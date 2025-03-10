@@ -81,5 +81,15 @@
         setInterval(createChaos, 100);
     </script>
 </body>
+</html>
+
+            // Remove after animation
+            setTimeout(() => chaos.remove(), 5000);
+        }
+
+        // Generate chaos continuously
+        setInterval(createChaos, 100);
+    </script>
+</body>
 </html># Agcampbell-
 My personal website .

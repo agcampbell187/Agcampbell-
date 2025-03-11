@@ -5,59 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A.G. Campbell - Author & Creator</title>
     <style>
+        /* Global Styles */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background: #121212;
-            color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             text-align: center;
-            background-image: url('background.jpg'); /* Optional: Add a background image */
-            background-size: cover;
-            background-position: center;
+            background: black;
+            overflow: hidden;
         }
+
+        /* Background Animation */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/3/3d/Metatron_Cube.svg') center/cover no-repeat;
+            opacity: 0.08;
+            filter: invert(1);
+            animation: rotateBackground 30s linear infinite;
+        }
+
+        @keyframes rotateBackground {
+            0% { transform: rotate(0deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1.1); }
+        }
+
+        /* Glitch Effect */
+        @keyframes glitch {
+            0% { text-shadow: 3px 3px #ff00ff, -3px -3px #00ffff; }
+            25% { text-shadow: -3px -3px #ff00ff, 3px 3px #00ffff; }
+            50% { text-shadow: 3px -3px #ff00ff, -3px 3px #00ffff; }
+            75% { text-shadow: -3px 3px #ff00ff, 3px -3px #00ffff; }
+            100% { text-shadow: 3px 3px #ff00ff, -3px -3px #00ffff; }
+        }
+
+        h1 {
+            font-size: 3em;
+            font-family: 'Courier New', Courier, monospace;
+            color: #FFD700;
+            animation: glitch 0.7s infinite alternate;
+        }
+
+        /* Container */
         .container {
             max-width: 800px;
             padding: 20px;
-            border: 2px solid #fff;
+            border: 2px solid rgba(255, 215, 0, 0.8);
             border-radius: 10px;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.85);
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 1.5s ease-out forwards;
         }
-        h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-            font-family: 'Courier New', Courier, monospace;
-            color: #FFD700;
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
+
         p {
             font-size: 1.2em;
-            margin-bottom: 20px;
+            color: white;
+            opacity: 0.9;
         }
+
+        /* Glowing Button */
         a {
             font-size: 1.2em;
             text-decoration: none;
             color: #FFD700;
-            padding: 10px;
+            padding: 10px 20px;
             border: 2px solid #FFD700;
             border-radius: 5px;
-            transition: 0.3s;
+            transition: 0.3s ease-in-out;
+            position: relative;
+            z-index: 3;
         }
+
         a:hover {
             background-color: #FFD700;
             color: #121212;
+            transform: scale(1.1);
+            box-shadow: 0 0 20px #FFD700;
         }
     </style>
 </head>
 <body>
+
+    <!-- Sacred Geometry Background -->
+    <div class="background"></div>
+
+    <!-- Main Content -->
     <div class="container">
         <h1>Welcome to the World of A.G. Campbell</h1>
         <p>Author, Creator, Computer Engineer, and Explorer of the Mind</p>
         <p>Discover stories, thoughts, and creations that challenge the limits of reality.</p>
         <a href="#about" title="Learn More">Learn More About Me</a>
     </div>
+
 </body>
 </html>
+

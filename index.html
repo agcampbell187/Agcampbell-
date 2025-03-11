@@ -1,84 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Chaos Land</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.G. Campbell - Author & Creator</title>
     <style>
-        /* Full-page chaos */
-        body, html {
+        body {
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            overflow: hidden;
-            background-color: black;
-            color: white;
-            font-family: 'Courier New', monospace;
+            background: #121212;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            background-image: url('background.jpg'); /* Optional: Add a background image */
+            background-size: cover;
+            background-position: center;
         }
-
-        /* Flashing text */
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.7);
+        }
         h1 {
-            font-size: 5em;
-            animation: flash 1s infinite alternate;
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #FFD700;
         }
-
         p {
-            font-size: 2em;
-            animation: colorShift 3s infinite alternate;
+            font-size: 1.2em;
+            margin-bottom: 20px;
         }
-
-        /* Keyframes for animation */
-        @keyframes flash {
-            0% { color: red; }
-            50% { color: yellow; }
-            100% { color: blue; }
+        a {
+            font-size: 1.2em;
+            text-decoration: none;
+            color: #FFD700;
+            padding: 10px;
+            border: 2px solid #FFD700;
+            border-radius: 5px;
+            transition: 0.3s;
         }
-
-        @keyframes colorShift {
-            0% { color: green; }
-            50% { color: purple; }
-            100% { color: cyan; }
-        }
-
-        /* Moving background */
-        #background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, red, blue, green, yellow, purple);
-            animation: spin 20s linear infinite;
-            z-index: -1;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        a:hover {
+            background-color: #FFD700;
+            color: #121212;
         }
     </style>
 </head>
 <body>
-    <div id="background"></div>
-    <h1>Welcome to Chaos Land!</h1>
-    <p>Embrace the surreal.</p>
-
-    <script>
-        // Randomly generate colorful squares
-        function createChaos() {
-            const chaos = document.createElement('div');
-            chaos.style.position = 'absolute';
-            chaos.style.width = '50px';
-            chaos.style.height = '50px';
-            chaos.style.backgroundColor = '#' + Math.floor(Math.random()*16777215).toString(16);
-            chaos.style.top = Math.random() * window.innerHeight + 'px';
-            chaos.style.left = Math.random() * window.innerWidth + 'px';
-            chaos.style.borderRadius = '50%';
-            document.body.appendChild(chaos);
-
-            // Remove after animation
-            setTimeout(() => chaos.remove(), 5000);
-        }
-
-        // Generate chaos continuously
-        setInterval(createChaos, 100);
-    </script>
+    <div class="container">
+        <h1>Welcome to the World of A.G. Campbell</h1>
+        <p>Author, Creator, Computer Engineer, and Explorer of the Mind</p>
+        <p>Discover stories, thoughts, and creations that challenge the limits of reality.</p>
+        <a href="#about" title="Learn More">Learn More About Me</a>
+    </div>
 </body>
 </html>

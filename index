@@ -1,84 +1,151 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Chaos Land</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.G. Campbell - Author & Creator</title>
     <style>
-        /* Full-page chaos */
-        body, html {
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            background: black;
             overflow: hidden;
-            background-color: black;
-            color: white;
-            font-family: 'Courier New', monospace;
+            position: relative;
         }
 
-        /* Flashing text */
+        /* Background Canvas for Sacred Geometry */
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.15; /* Faint mystical effect */
+        }
+
+        /* Glitch Effect */
+        @keyframes glitch {
+            0% { text-shadow: 3px 3px #ff00ff, -3px -3px #00ffff; }
+            25% { text-shadow: -3px -3px #ff00ff, 3px 3px #00ffff; }
+            50% { text-shadow: 3px -3px #ff00ff, -3px 3px #00ffff; }
+            75% { text-shadow: -3px 3px #ff00ff, 3px -3px #00ffff; }
+            100% { text-shadow: 3px 3px #ff00ff, -3px -3px #00ffff; }
+        }
+
         h1 {
-            font-size: 5em;
-            animation: flash 1s infinite alternate;
+            font-size: 3em;
+            font-family: 'Courier New', Courier, monospace;
+            color: #FFD700;
+            animation: glitch 0.7s infinite alternate;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Container */
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            border: 2px solid rgba(255, 215, 0, 0.8);
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.85);
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         p {
-            font-size: 2em;
-            animation: colorShift 3s infinite alternate;
+            font-size: 1.2em;
+            color: white;
+            opacity: 0.9;
         }
 
-        /* Keyframes for animation */
-        @keyframes flash {
-            0% { color: red; }
-            50% { color: yellow; }
-            100% { color: blue; }
+        /* Glowing Button */
+        a {
+            font-size: 1.2em;
+            text-decoration: none;
+            color: #FFD700;
+            padding: 10px 20px;
+            border: 2px solid #FFD700;
+            border-radius: 5px;
+            transition: 0.3s ease-in-out;
+            position: relative;
+            z-index: 3;
         }
 
-        @keyframes colorShift {
-            0% { color: green; }
-            50% { color: purple; }
-            100% { color: cyan; }
-        }
-
-        /* Moving background */
-        #background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, red, blue, green, yellow, purple);
-            animation: spin 20s linear infinite;
-            z-index: -1;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        a:hover {
+            background-color: #FFD700;
+            color: #121212;
+            transform: scale(1.1);
+            box-shadow: 0 0 20px #FFD700;
         }
     </style>
 </head>
 <body>
-    <div id="background"></div>
-    <h1>Welcome to Chaos Land!</h1>
-    <p>Embrace the surreal.</p>
+
+    <!-- Sacred Geometry Background Canvas -->
+    <canvas id="sacredGeometry"></canvas>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Welcome to the World of A.G. Campbell</h1>
+        <p>Author, Creator, Computer Engineer, and Explorer of the Mind</p>
+        <p>Discover stories, thoughts, and creations that challenge the limits of reality.</p>
+        <a href="#about" title="Learn More">Learn More About Me</a>
+    </div>
 
     <script>
-        // Randomly generate colorful squares
-        function createChaos() {
-            const chaos = document.createElement('div');
-            chaos.style.position = 'absolute';
-            chaos.style.width = '50px';
-            chaos.style.height = '50px';
-            chaos.style.backgroundColor = '#' + Math.floor(Math.random()*16777215).toString(16);
-            chaos.style.top = Math.random() * window.innerHeight + 'px';
-            chaos.style.left = Math.random() * window.innerWidth + 'px';
-            chaos.style.borderRadius = '50%';
-            document.body.appendChild(chaos);
+        const canvas = document.getElementById('sacredGeometry');
+        const ctx = canvas.getContext('2d');
 
-            // Remove after animation
-            setTimeout(() => chaos.remove(), 5000);
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
 
-        // Generate chaos continuously
-        setInterval(createChaos, 100);
+        function drawFlowerOfLife(x, y, radius, layers) {
+            ctx.strokeStyle = 'rgba(255, 215, 0, 0.3)'; // Gold but subtle
+            ctx.lineWidth = 1;
+            let step = Math.PI / 3; // 60-degree angles
+
+            for (let i = 0; i < layers; i++) {
+                let layerRadius = radius * (i + 1);
+                for (let angle = 0; angle < Math.PI * 2; angle += step) {
+                    let newX = x + Math.cos(angle) * layerRadius;
+                    let newY = y + Math.sin(angle) * layerRadius;
+                    drawCircle(newX, newY, radius);
+                }
+            }
+        }
+
+        function drawCircle(x, y, radius) {
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawFlowerOfLife(canvas.width / 2, canvas.height / 2, 50, 5);
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        animate();
     </script>
+
 </body>
 </html>

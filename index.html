@@ -17,24 +17,18 @@
             text-align: center;
             background: black;
             overflow: hidden;
+            position: relative;
         }
 
-        /* Background Animation */
-        .background {
+        /* Background Canvas for Sacred Geometry */
+        canvas {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://upload.wikimedia.org/wikipedia/commons/3/3d/Metatron_Cube.svg') center/cover no-repeat;
-            opacity: 0.08;
-            filter: invert(1);
-            animation: rotateBackground 30s linear infinite;
-        }
-
-        @keyframes rotateBackground {
-            0% { transform: rotate(0deg) scale(1.1); }
-            100% { transform: rotate(360deg) scale(1.1); }
+            z-index: 1;
+            opacity: 0.15; /* Faint mystical effect */
         }
 
         /* Glitch Effect */
@@ -51,6 +45,8 @@
             font-family: 'Courier New', Courier, monospace;
             color: #FFD700;
             animation: glitch 0.7s infinite alternate;
+            position: relative;
+            z-index: 2;
         }
 
         /* Container */
@@ -99,8 +95,8 @@
 </head>
 <body>
 
-    <!-- Sacred Geometry Background -->
-    <div class="background"></div>
+    <!-- Sacred Geometry Background Canvas -->
+    <canvas id="sacredGeometry"></canvas>
 
     <!-- Main Content -->
     <div class="container">
@@ -109,6 +105,47 @@
         <p>Discover stories, thoughts, and creations that challenge the limits of reality.</p>
         <a href="#about" title="Learn More">Learn More About Me</a>
     </div>
+
+    <script>
+        const canvas = document.getElementById('sacredGeometry');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        function drawFlowerOfLife(x, y, radius, layers) {
+            ctx.strokeStyle = 'rgba(255, 215, 0, 0.3)'; // Gold but subtle
+            ctx.lineWidth = 1;
+            let step = Math.PI / 3; // 60-degree angles
+
+            for (let i = 0; i < layers; i++) {
+                let layerRadius = radius * (i + 1);
+                for (let angle = 0; angle < Math.PI * 2; angle += step) {
+                    let newX = x + Math.cos(angle) * layerRadius;
+                    let newY = y + Math.sin(angle) * layerRadius;
+                    drawCircle(newX, newY, radius);
+                }
+            }
+        }
+
+        function drawCircle(x, y, radius) {
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawFlowerOfLife(canvas.width / 2, canvas.height / 2, 50, 5);
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        animate();
+    </script>
 
 </body>
 </html>

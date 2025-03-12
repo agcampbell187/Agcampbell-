@@ -20,20 +20,26 @@
             position: relative;
         }
 
-        /* Background Grid */
+        /* Background: Black & White Cyber Grid */
         .grid {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 5%, transparent 60%), 
-                        repeating-linear-gradient(0deg, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 1px, transparent 2px, transparent 50px), 
+            background: repeating-linear-gradient(0deg, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 1px, transparent 2px, transparent 50px), 
                         repeating-linear-gradient(90deg, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 1px, transparent 2px, transparent 50px);
             z-index: 1;
+            animation: gridMove 5s linear infinite;
         }
 
-        /* Glitch Effect */
+        @keyframes gridMove {
+            0% { transform: scale(1) translateY(0px); }
+            50% { transform: scale(1.05) translateY(5px); }
+            100% { transform: scale(1) translateY(0px); }
+        }
+
+        /* Glitch Effect for Blue Text */
         @keyframes glitch {
             0% { text-shadow: 2px 2px #00FFFF, -2px -2px #0033FF; }
             25% { text-shadow: -3px -3px #00FFFF, 3px 3px #0033FF; }
@@ -46,7 +52,7 @@
             font-size: 2.8em;
             font-family: 'Courier New', Courier, monospace;
             color: #00FFFF;
-            animation: glitch 1.2s infinite alternate;
+            animation: glitch 1.5s infinite alternate;
             position: relative;
             z-index: 2;
             letter-spacing: 2px;
@@ -98,6 +104,7 @@
             transform: scale(1.1);
             box-shadow: 0 0 20px #00FFFF;
         }
+
     </style>
 </head>
 <body>

@@ -48,45 +48,48 @@
             z-index: 2;
         }
 
-        /* Container */
+        /* Text Box – Matches the Fractal Vibes */
         .container {
             max-width: 800px;
             padding: 20px;
-            border: 2px solid rgba(255, 215, 0, 0.9);
-            border-radius: 10px;
-            background: rgba(0, 0, 0, 0.85);
+            border: 3px solid #FFD700;
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.75); /* Semi-transparent for better integration */
             position: relative;
             z-index: 2;
-            animation: fadeIn 1.5s ease-out forwards;
+            box-shadow: 0 0 20px #FFD700, 0 0 40px rgba(255, 215, 0, 0.3); /* Neon glow */
+            animation: pulseGlow 2s infinite alternate ease-in-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 10px #FFD700, 0 0 20px rgba(255, 215, 0, 0.2); }
+            100% { box-shadow: 0 0 30px #FFD700, 0 0 60px rgba(255, 215, 0, 0.4); }
         }
 
         p {
             font-size: 1.2em;
             color: white;
-            opacity: 0.9;
+            opacity: 0.95;
         }
 
         /* Glowing Button */
         a {
             font-size: 1.2em;
             text-decoration: none;
-            color: #FFD700;
+            color: #121212;
             padding: 10px 20px;
             border: 2px solid #FFD700;
             border-radius: 5px;
-            transition: 0.3s ease-in-out;
+            background: #FFD700;
+            transition: all 0.3s ease-in-out;
             position: relative;
             z-index: 3;
+            box-shadow: 0 0 15px #FFD700;
         }
 
         a:hover {
-            background-color: #FFD700;
-            color: #121212;
+            background-color: black;
+            color: #FFD700;
             transform: scale(1.1);
             box-shadow: 0 0 20px #FFD700;
         }
@@ -108,8 +111,8 @@
     <script>
         const canvas = document.getElementById('fractalCanvas');
         const ctx = canvas.getContext('2d');
-        let zoom = 1;
-        let offsetX = 0, offsetY = 0;
+        let zoom = 1.01;
+        let offsetX = -0.7, offsetY = 0.0;
         let hueShift = 0;
 
         function resizeCanvas() {
@@ -120,7 +123,7 @@
         function mandelbrot(x, y) {
             let real = x, imag = y;
             let iterations = 0;
-            const maxIterations = 300;
+            const maxIterations = 500; // Higher for more fractal detail
             while (real * real + imag * imag < 4 && iterations < maxIterations) {
                 let tempReal = real * real - imag * imag + x;
                 imag = 2 * real * imag + y;
@@ -141,7 +144,7 @@
                     let scaledY = (y - h / 2) / (0.5 * zoom * h) + offsetY;
                     let iterations = mandelbrot(scaledX, scaledY);
                     
-                    let color = iterations === 300 ? 0 : (iterations * 10 + hueShift) % 360;
+                    let color = iterations === 500 ? 0 : (iterations * 10 + hueShift) % 360;
                     let pixelIndex = (y * w + x) * 4;
                     pixels[pixelIndex] = Math.sin(color) * 255; // Red
                     pixels[pixelIndex + 1] = Math.sin(color + 2) * 255; // Green
@@ -151,14 +154,14 @@
             }
 
             ctx.putImageData(imageData, 0, 0);
-            hueShift += 0.5;
+            hueShift += 0.2;
             requestAnimationFrame(drawFractal);
         }
 
         function animateZoom() {
-            zoom *= 1.01;
-            offsetX += Math.sin(performance.now() / 2000) * 0.002;
-            offsetY += Math.cos(performance.now() / 2000) * 0.002;
+            zoom *= 1.005; // Slightly faster zoom
+            offsetX += Math.sin(performance.now() / 3000) * 0.002;
+            offsetY += Math.cos(performance.now() / 3000) * 0.002;
             requestAnimationFrame(animateZoom);
         }
 

@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,7 +28,7 @@
             width: 100%;
             height: 100%;
             z-index: 1;
-            opacity: 0.2; /* Softer, blended neon */
+            opacity: 0.18; /* Softer but still present */
         }
 
         /* Glitch Effect */
@@ -51,22 +51,22 @@
             text-transform: uppercase;
         }
 
-        /* Text Box – Neon Cyberpunk Glow */
+        /* Text Box – Cyberpunk Glow */
         .container {
             max-width: 750px;
-            padding: 25px;
-            border: 2px solid #FF00FF;
-            border-radius: 10px;
-            background: rgba(20, 10, 40, 0.9); /* Darker and smoother */
+            padding: 30px;
+            border: 3px solid #FF00FF;
+            border-radius: 12px;
+            background: rgba(15, 10, 30, 0.85); /* Darker & smoother */
             position: relative;
             z-index: 2;
-            box-shadow: 0 0 15px rgba(255, 0, 255, 0.5), 0 0 40px rgba(0, 255, 255, 0.3); /* Balanced neon glow */
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.6), 0 0 50px rgba(0, 255, 255, 0.3); /* Balanced neon glow */
             animation: pulseGlow 3s infinite alternate ease-in-out;
         }
 
         @keyframes pulseGlow {
-            0% { box-shadow: 0 0 10px #FF00FF, 0 0 25px rgba(0, 255, 255, 0.3); }
-            100% { box-shadow: 0 0 25px #FF00FF, 0 0 50px rgba(0, 255, 255, 0.6); }
+            0% { box-shadow: 0 0 12px #FF00FF, 0 0 25px rgba(0, 255, 255, 0.4); }
+            100% { box-shadow: 0 0 30px #FF00FF, 0 0 55px rgba(0, 255, 255, 0.7); }
         }
 
         p {
@@ -80,21 +80,21 @@
             font-size: 1.1em;
             text-decoration: none;
             color: #121212;
-            padding: 10px 20px;
-            border: 2px solid #00FFFF;
-            border-radius: 5px;
+            padding: 12px 24px;
+            border: 3px solid #00FFFF;
+            border-radius: 8px;
             background: #00FFFF;
             transition: all 0.3s ease-in-out;
             position: relative;
             z-index: 3;
-            box-shadow: 0 0 15px #00FFFF, 0 0 30px rgba(0, 255, 255, 0.5);
+            box-shadow: 0 0 15px #00FFFF, 0 0 40px rgba(0, 255, 255, 0.6);
         }
 
         a:hover {
             background-color: black;
             color: #00FFFF;
             transform: scale(1.1);
-            box-shadow: 0 0 20px #00FFFF;
+            box-shadow: 0 0 25px #00FFFF;
         }
     </style>
 </head>
@@ -114,7 +114,7 @@
     <script>
         const canvas = document.getElementById('fractalCanvas');
         const ctx = canvas.getContext('2d');
-        let zoom = 1.0018; // Smooth zoom, slightly slower
+        let zoom = 1.002;
         let offsetX = -0.75, offsetY = 0;
         let hueShift = 0;
 
@@ -126,7 +126,7 @@
         function mandelbrot(x, y) {
             let real = x, imag = y;
             let iterations = 0;
-            const maxIterations = 700; // More depth
+            const maxIterations = 900; // More depth, no empty spaces
             while (real * real + imag * imag < 4 && iterations < maxIterations) {
                 let tempReal = real * real - imag * imag + x;
                 imag = 2 * real * imag + y;
@@ -143,11 +143,11 @@
 
             for (let x = 0; x < w; x++) {
                 for (let y = 0; y < h; y++) {
-                    let scaledX = (x - w / 2) / (0.3 * zoom * w) + offsetX;
-                    let scaledY = (y - h / 2) / (0.3 * zoom * h) + offsetY;
+                    let scaledX = (x - w / 2) / (0.25 * zoom * w) + offsetX;
+                    let scaledY = (y - h / 2) / (0.25 * zoom * h) + offsetY;
                     let iterations = mandelbrot(scaledX, scaledY);
                     
-                    let color = iterations === 700 ? 0 : (iterations * 14 + hueShift) % 360;
+                    let color = iterations === 900 ? 0 : (iterations * 16 + hueShift) % 360;
                     let pixelIndex = (y * w + x) * 4;
                     pixels[pixelIndex] = Math.sin(color) * 255; // Red
                     pixels[pixelIndex + 1] = Math.sin(color + 2) * 255; // Green
@@ -157,7 +157,7 @@
             }
 
             ctx.putImageData(imageData, 0, 0);
-            hueShift += 0.05; // Slower, controlled color shifting
+            hueShift += 0.03; // Slower color cycling for a smooth trip
             requestAnimationFrame(drawFractal);
         }
 

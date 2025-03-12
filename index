@@ -20,7 +20,7 @@
             position: relative;
         }
 
-        /* Background: Glowing White Cyber Grid */
+        /* Background: Glowing White Cyber Grid with Randomized Glitch */
         .grid {
             position: absolute;
             top: 0;
@@ -30,8 +30,8 @@
             background: repeating-linear-gradient(0deg, rgba(255,255,255,0.3) 0px, rgba(255,255,255,0.3) 1px, transparent 2px, transparent 50px), 
                         repeating-linear-gradient(90deg, rgba(255,255,255,0.3) 0px, rgba(255,255,255,0.3) 1px, transparent 2px, transparent 50px);
             z-index: 1;
-            animation: gridMove 6s linear infinite;
-            box-shadow: 0 0 50px rgba(255, 255, 255, 0.5); /* Soft white glow */
+            animation: gridMove 6s linear infinite, gridGlitch 3s infinite steps(1);
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.6);
         }
 
         @keyframes gridMove {
@@ -40,13 +40,21 @@
             100% { transform: scale(1) translateY(0px); }
         }
 
+        @keyframes gridGlitch {
+            0%, 100% { opacity: 1; transform: translate(0,0); }
+            20% { opacity: 0.9; transform: translate(-2px, 1px) scale(1.01); }
+            40% { opacity: 1; transform: translate(1px, -2px) scale(1.02); }
+            60% { opacity: 0.95; transform: translate(-1px, 2px) scale(1.01); }
+            80% { opacity: 1; transform: translate(2px, -1px) scale(1.02); }
+        }
+
         /* Glitch Effect for Red Neon Text */
         @keyframes glitch {
-            0% { text-shadow: 2px 2px #FF0000, -2px -2px #990000; }
-            25% { text-shadow: -3px -3px #FF0000, 3px 3px #990000; }
-            50% { text-shadow: 3px -3px #FF0000, -3px 3px #990000; }
-            75% { text-shadow: -3px 3px #FF0000, 3px -3px #990000; }
-            100% { text-shadow: 2px 2px #FF0000, -2px -2px #990000; }
+            0% { text-shadow: 2px 2px #FF0000, -2px -2px #990000, 0 0 5px rgba(255, 0, 0, 0.8); }
+            25% { text-shadow: -3px -3px #FF0000, 3px 3px #990000, 0 0 10px rgba(255, 0, 0, 0.7); }
+            50% { text-shadow: 3px -3px #FF0000, -3px 3px #990000, 0 0 15px rgba(255, 0, 0, 0.9); }
+            75% { text-shadow: -3px 3px #FF0000, 3px -3px #990000, 0 0 10px rgba(255, 0, 0, 0.6); }
+            100% { text-shadow: 2px 2px #FF0000, -2px -2px #990000, 0 0 5px rgba(255, 0, 0, 0.8); }
         }
 
         h1 {
@@ -60,7 +68,7 @@
             text-transform: uppercase;
         }
 
-        /* Text Box – Intense Red Glow */
+        /* Text Box – Stronger Red Glow */
         .container {
             max-width: 750px;
             padding: 30px;
@@ -69,13 +77,13 @@
             background: rgba(0, 0, 0, 0.9);
             position: relative;
             z-index: 2;
-            box-shadow: 0 0 40px rgba(255, 0, 0, 0.8), 0 0 80px rgba(255, 0, 0, 0.5); /* Deep red glow */
+            box-shadow: 0 0 50px rgba(255, 0, 0, 1), 0 0 100px rgba(255, 0, 0, 0.7);
             animation: pulseGlow 3s infinite alternate ease-in-out;
         }
 
         @keyframes pulseGlow {
-            0% { box-shadow: 0 0 20px red, 0 0 40px rgba(255, 0, 0, 0.5); }
-            100% { box-shadow: 0 0 50px red, 0 0 90px rgba(255, 0, 0, 0.7); }
+            0% { box-shadow: 0 0 25px red, 0 0 50px rgba(255, 0, 0, 0.6); }
+            100% { box-shadow: 0 0 60px red, 0 0 120px rgba(255, 0, 0, 0.8); }
         }
 
         p {
@@ -84,27 +92,28 @@
             opacity: 0.9;
         }
 
-        /* Holographic Button */
+        /* Holographic Button – More Readable */
         a {
             font-size: 1.1em;
             text-decoration: none;
-            color: black;
+            color: white;
             padding: 12px 24px;
-            border: 2px solid rgba(255, 0, 0, 0.8);
+            border: 2px solid rgba(255, 0, 0, 0.9);
             border-radius: 5px;
-            background: rgba(255, 0, 0, 0.3);
+            background: rgba(255, 0, 0, 0.4);
             transition: all 0.3s ease-in-out;
             position: relative;
             z-index: 3;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.6), inset 0 0 15px rgba(255, 0, 0, 0.4);
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.8), inset 0 0 15px rgba(255, 0, 0, 0.6);
             backdrop-filter: blur(5px);
+            font-weight: bold;
         }
 
         a:hover {
-            background-color: rgba(255, 0, 0, 0.5);
-            color: white;
+            background-color: rgba(255, 0, 0, 0.6);
+            color: black;
             transform: scale(1.1);
-            box-shadow: 0 0 40px rgba(255, 0, 0, 0.8), inset 0 0 20px rgba(255, 0, 0, 0.6);
+            box-shadow: 0 0 50px rgba(255, 0, 0, 1), inset 0 0 25px rgba(255, 0, 0, 0.8);
         }
 
     </style>
@@ -124,3 +133,4 @@
 
 </body>
 </html>
+

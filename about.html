@@ -1,116 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About A.G. Campbell</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-            background: black;
-            color: white;
-            overflow: hidden;
-            position: relative;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About A.G. Campbell</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #111;
+      color: #eee;
+      margin: 0;
+      padding: 0;
+    }
 
-        /* White glowing grid background */
-        .grid {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(0deg, rgba(255,255,255,0.3) 0px, rgba(255,255,255,0.3) 1px, transparent 2px, transparent 50px), 
-                        repeating-linear-gradient(90deg, rgba(255,255,255,0.3) 0px, rgba(255,255,255,0.3) 1px, transparent 2px, transparent 50px);
-            z-index: 1;
-            box-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
-        }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
 
-        .container {
-            max-width: 800px;
-            padding: 30px;
-            border: 3px solid white;
-            border-radius: 10px;
-            background: rgba(0, 0, 0, 0.9);
-            position: relative;
-            z-index: 2;
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
-        }
+    h1, h3 {
+      color: #ff0033;
+    }
 
-        h1 {
-            color: red;
-            font-size: 2.5em;
-            text-transform: uppercase;
-        }
+    a {
+      color: #ff0033;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+      backdrop-filter: blur(5px);
+      padding: 4px 6px;
+      border-radius: 4px;
+    }
 
-        p {
-            font-size: 1.2em;
-            opacity: 0.9;
-        }
+    a:hover {
+      background-color: rgba(255, 0, 0, 0.6);
+      color: black;
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+    }
 
-        a {
-            font-size: 1.1em;
-            text-decoration: none;
-            color: white;
-            padding: 12px 24px;
-            border: 2px solid red;
-            border-radius: 5px;
-            background: rgba(255, 0, 0, 0.4);
-            transition: all 0.3s ease-in-out;
-            position: relative;
-            z-index: 3;
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
-            backdrop-filter: blur(5px);
-            font-weight: bold;
-        }
+    ul {
+      list-style: square;
+      padding-left: 20px;
+    }
 
-        a:hover {
-            background-color: rgba(255, 0, 0, 0.6);
-            color: black;
-            transform: scale(1.1);
-            box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
-        }
-    </style>
+    p {
+      line-height: 1.6;
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <h1>About A.G. Campbell</h1>
+    <p>Welcome to my world. I'm A.G. Campbell—a writer, digital architect, and relentless explorer of the unknown. I don’t just tell stories—I drag them out from the shadows, twist reality, and inject raw emotion into every line.</p>
 
-    <div class="grid"></div>
+    <p>My work blends gritty realism with surreal horror, tangled narratives, and unforgettable characters. From short stories to digital experiences, I build worlds that haunt, provoke, and pull readers deeper. If it makes you uncomfortable in the best way possible, I’ve done my job right.</p>
 
-    <div class="container">
-        <h1>About A.G. Campbell</h1>
-        <p>Welcome to my world. I'm an author, creator, and explorer of the unknown.</p>
-        <p>I write stories that bend reality, build digital landscapes, and dive into the depths of chaos.</p>
-        <a href="index.html">← Back to Main Page</a>
-    </div>
+    <p>I’m also fluent in HTML, CSS, and on the path to full-stack engineering. That means I don’t just write—I create immersive digital landscapes where the written word meets the code that powers it.</p>
 
+    <p>Freelance ready. I offer:</p>
+    <ul>
+      <li>Creative writing (fiction, horror, immersive copy)</li>
+      <li>Web content and landing pages with edge and personality</li>
+      <li>Frontend web development (HTML, CSS, JavaScript)</li>
+      <li>Scriptwriting and interactive experiences</li>
+    </ul>
+
+    <p>Let’s build something wild. If you want content that punches through the noise—or a digital experience that feels alive—hit me up.</p>
+
+    <h3>Contact</h3>
+    <p>Email: <a href="mailto:agcampbell187@outlook.com">agcampbell187@outlook.com</a><br>
+    Phone: <a href="tel:+12488617548">248-861-7548</a></p>
+
+    <p><a href="index.html">← Back to Main Page</a></p>
+  </div>
 </body>
 </html>
-<h1>About A.G. Campbell</h1>
-<p>Welcome to my world. I'm A.G. Campbell—a writer, digital architect, and relentless explorer of the unknown. I don’t just tell stories—I drag them out from the shadows, twist reality, and inject raw emotion into every line.</p>
-
-<p>My work blends gritty realism with surreal horror, tangled narratives, and unforgettable characters. From short stories to digital experiences, I build worlds that haunt, provoke, and pull readers deeper. If it makes you uncomfortable in the best way possible, I’ve done my job right.</p>
-
-<p>I’m also fluent in HTML, CSS, and on the path to full-stack engineering. That means I don’t just write—I create immersive digital landscapes where the written word meets the code that powers it.</p>
-
-<p>Freelance ready. I offer:</p>
-<ul>
-  <li>Creative writing (fiction, horror, immersive copy)</li>
-  <li>Web content and landing pages with edge and personality</li>
-  <li>Frontend web development (HTML, CSS, JavaScript)</li>
-  <li>Scriptwriting and interactive experiences</li>
-</ul>
-
-<p>Let’s build something wild. If you want content that punches through the noise—or a digital experience that feels alive—hit me up.</p>
-
-<h3>Contact</h3>
-<p>Email: <a href="mailto:agcampbell187@outlook.com">agcampbell187@outlook.com</a><br>
-Phone: <a href="tel:+12488617548">248-861-7548</a></p>
-
-<a href="index.html">← Back to Main Page</a>
